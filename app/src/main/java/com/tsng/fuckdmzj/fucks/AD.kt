@@ -6,12 +6,12 @@ import com.github.kyuubiran.ezxhelper.utils.hookReplace
 import com.github.kyuubiran.ezxhelper.utils.invokeMethod
 import com.tsng.fuckdmzj.BaseFuck
 
-object TeenagerMode : BaseFuck {
+object AD : BaseFuck {
     override fun entry() {
-        getMethodBySig("Lcom/dmzjsq/manhua_kt/ui/TeenagerModeDialogActivity;->initView()V").also {
+        getMethodBySig("Lcom/dmzjsq/manhua/ad/adv/LTUnionADPlatform;->LoadShowInfo(ILjava/lang/String;)V").also {
             it.hookReplace { param ->
-                Log.i("Fuck TeenagerMode")
-                param.thisObject.invokeMethod("finish")
+                Log.i("Fuck AD")
+                param.thisObject.invokeMethod("onAdCloseView")
             }
         }
     }
