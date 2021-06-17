@@ -5,10 +5,10 @@ import com.tsng.fuckdmzj.BaseFuck
 
 object AD : BaseFuck {
     override fun entry() {
-        findMethodByCondition("com.dmzjsq.manhua.ad.adv.LTUnionADPlatform") {
-            it.name == "displayAd" || it.name == "displayByChannelid" || it.name == "displaySplashAd"
+        getMethodArrayByCondition("com.dmzjsq.manhua.ad.adv.LTUnionADPlatform") {
+            it.name.lowercase().contains("display") && !it.isStatic
         }.hookAfter { param ->
-            Log.i("Fuck AD")
+            Log.i("Fuck ad")
             param.thisObject.invokeMethod("onAdCloseView")
         }
     }
