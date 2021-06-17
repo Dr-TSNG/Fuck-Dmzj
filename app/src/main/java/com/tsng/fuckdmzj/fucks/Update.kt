@@ -6,8 +6,6 @@ import com.tsng.fuckdmzj.BaseFuck
 
 object Update : BaseFuck {
     override fun entry() {
-        getMethodBySig("Lcom/dmzjsq/manhua/helper/AppUpDataHelper;->checkVersionInfo(Landroid/app/Activity;Ljava/lang/Class;Z)V").also {
-            it.hookReplace {}
-        }
+        getMethodBySig("Lcom/dmzjsq/manhua/helper/AppUpDataHelper;->checkVersionInfo(Landroid/app/Activity;Ljava/lang/Class;Z)V").hookReplace {}
     }
 }

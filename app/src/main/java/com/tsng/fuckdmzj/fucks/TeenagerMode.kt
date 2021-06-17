@@ -8,11 +8,9 @@ import com.tsng.fuckdmzj.BaseFuck
 
 object TeenagerMode : BaseFuck {
     override fun entry() {
-        getMethodBySig("Lcom/dmzjsq/manhua_kt/ui/TeenagerModeDialogActivity;->initView()V").also {
-            it.hookReplace { param ->
-                Log.i("Fuck TeenagerMode")
-                param.thisObject.invokeMethod("finish")
-            }
+        getMethodBySig("Lcom/dmzjsq/manhua_kt/ui/TeenagerModeDialogActivity;->initView()V").hookReplace { param ->
+            Log.i("Fuck TeenagerMode")
+            param.thisObject.invokeMethod("finish")
         }
     }
 }
