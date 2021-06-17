@@ -8,6 +8,7 @@ import com.github.kyuubiran.ezxhelper.utils.findMethodByCondition
 import com.github.kyuubiran.ezxhelper.utils.hookAfter
 import com.tsng.fuckdmzj.fucks.AD
 import com.tsng.fuckdmzj.fucks.TeenagerMode
+import com.tsng.fuckdmzj.fucks.Update
 import de.robv.android.xposed.IXposedHookLoadPackage
 import de.robv.android.xposed.IXposedHookZygoteInit
 import de.robv.android.xposed.callbacks.XC_LoadPackage
@@ -45,7 +46,8 @@ class Entry : IXposedHookZygoteInit, IXposedHookLoadPackage {
     private fun registerHooks() {
         val allHooks = setOf(
             AD,
-            TeenagerMode
+            TeenagerMode,
+            Update
         )
         for (hook in allHooks) hook.entry()
     }
