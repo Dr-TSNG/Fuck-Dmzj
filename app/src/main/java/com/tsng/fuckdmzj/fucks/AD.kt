@@ -11,5 +11,11 @@ object AD : BaseFuck {
             Log.i("Fuck ad")
             param.thisObject.invokeMethod("onAdCloseView")
         }
+        getMethodArrayByCondition("com.dmzjsq.manhua.ad.BrowseAdHelper") {
+            it.name.lowercase().contains("ad")
+        }.hookBefore { param ->
+            Log.i("Fuck ad")
+            param.result = null
+        }
     }
 }
