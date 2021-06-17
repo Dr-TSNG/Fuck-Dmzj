@@ -1,18 +1,15 @@
 package com.tsng.fuckdmzj.fucks
 
-import com.github.kyuubiran.ezxhelper.utils.Log
-import com.github.kyuubiran.ezxhelper.utils.getMethodBySig
-import com.github.kyuubiran.ezxhelper.utils.hookReplace
-import com.github.kyuubiran.ezxhelper.utils.invokeMethod
+import com.github.kyuubiran.ezxhelper.utils.*
 import com.tsng.fuckdmzj.BaseFuck
 
 object AD : BaseFuck {
     override fun entry() {
-        getMethodBySig("Lcom/dmzjsq/manhua/ad/adv/LTUnionADPlatform;->LoadShowInfo(ILjava/lang/String;)V").also {
-            it.hookReplace { param ->
-                Log.i("Fuck AD")
-                param.thisObject.invokeMethod("onAdCloseView")
-            }
+        findMethodByCondition("com.dmzjsq.manhua.ad.adv.LTUnionADPlatform") {
+            it.name == "displayAd" || it.name == "displayByChannelid" || it.name == "displaySplashAd"
+        }.hookAfter { param ->
+            Log.i("Fuck AD")
+            param.thisObject.invokeMethod("onAdCloseView")
         }
     }
 }
