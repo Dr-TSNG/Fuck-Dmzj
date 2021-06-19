@@ -38,5 +38,4 @@
     java.lang.Object readResolve();
 }
 
--keep public class com.tsng.fuckdmzj.*
--keep public class com.tsng.fuckdmzj.fucks.*
+-keep class com.tsng.fuckdmzj.**
