@@ -36,17 +36,21 @@ class Entry : IXposedHookZygoteInit, IXposedHookLoadPackage {
                 val context = param.args[0] as Context
                 EzXHelperInit.initAppContext(context)
                 EzXHelperInit.setEzClassLoader(context.classLoader)
-                EzXHelperInit.initActivityProxyManager(
-                    BuildConfig.APPLICATION_ID,
-                    "com.dmzjsq.manhua.ui.SettingHomeActivity",
-                    Entry::class.java.classLoader!!
-                )
-                EzXHelperInit.initSubActivity()
+                try {
+                    EzXHelperInit.initActivityProxyManager(
+                        BuildConfig.APPLICATION_ID,
+                        "com.dmzjsq.manhua.ui.SettingHomeActivity",
+                        Entry::class.java.classLoader!!
+                    )
+                    EzXHelperInit.initSubActivity()
+                } catch (e: Exception) {
+                    Log.w("Init activityProxyManager failed")
+                }
                 Log.i("Init context successfully")
                 helloWorld()
                 registerHooks()
             }
-        } catch (e: Throwable) {
+        } catch (e: Exception) {
             Log.e("Failed to get context and classloader")
         }
     }
