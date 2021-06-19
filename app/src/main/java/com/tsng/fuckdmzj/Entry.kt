@@ -9,8 +9,9 @@ import com.github.kyuubiran.ezxhelper.init.InitFields.appContext
 import com.github.kyuubiran.ezxhelper.utils.*
 import com.tsng.fuckdmzj.fucks.AD
 import com.tsng.fuckdmzj.fucks.ModuleEntry
-import com.tsng.fuckdmzj.fucks.TeenagerMode
-import com.tsng.fuckdmzj.fucks.Update
+import com.tsng.fuckdmzj.fucks.dialogs.Reward
+import com.tsng.fuckdmzj.fucks.dialogs.TeenagerMode
+import com.tsng.fuckdmzj.fucks.dialogs.Update
 import com.tsng.fuckdmzj.ui.ModuleActivity
 import de.robv.android.xposed.IXposedHookLoadPackage
 import de.robv.android.xposed.IXposedHookZygoteInit
@@ -75,6 +76,7 @@ class Entry : IXposedHookZygoteInit, IXposedHookLoadPackage {
         val allHooks = setOf(
             ModuleEntry,
             AD,
+            Reward,
             TeenagerMode,
             Update,
         )

@@ -1,4 +1,4 @@
-package com.tsng.fuckdmzj.fucks
+package com.tsng.fuckdmzj.fucks.dialogs
 
 import com.github.kyuubiran.ezxhelper.utils.Log
 import com.github.kyuubiran.ezxhelper.utils.getMethodBySig
