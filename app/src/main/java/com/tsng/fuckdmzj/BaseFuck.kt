@@ -1,6 +1,6 @@
 package com.tsng.fuckdmzj
 
-import android.content.Context.MODE_PRIVATE
+import android.content.Context
 import com.github.kyuubiran.ezxhelper.init.InitFields.appContext
 
 abstract class BaseFuck {
@@ -10,7 +10,7 @@ abstract class BaseFuck {
     abstract fun entry()
 
     fun join(): Boolean {
-        val pref = appContext.getSharedPreferences("fuck_dmzj", MODE_PRIVATE)
+        val pref = appContext.getSharedPreferences("fuck_dmzj", Context.MODE_PRIVATE)
         var register = false
         when (prefType) {
             null -> register = true

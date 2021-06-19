@@ -1,15 +1,17 @@
 package com.tsng.fuckdmzj
 
+import android.app.Activity
 import android.app.Application
 import android.content.Context
+import android.content.Intent
 import com.github.kyuubiran.ezxhelper.init.EzXHelperInit
-import com.github.kyuubiran.ezxhelper.utils.Log
-import com.github.kyuubiran.ezxhelper.utils.findMethodByCondition
-import com.github.kyuubiran.ezxhelper.utils.hookAfter
+import com.github.kyuubiran.ezxhelper.init.InitFields.appContext
+import com.github.kyuubiran.ezxhelper.utils.*
 import com.tsng.fuckdmzj.fucks.AD
 import com.tsng.fuckdmzj.fucks.ModuleEntry
 import com.tsng.fuckdmzj.fucks.TeenagerMode
 import com.tsng.fuckdmzj.fucks.Update
+import com.tsng.fuckdmzj.ui.ModuleActivity
 import de.robv.android.xposed.IXposedHookLoadPackage
 import de.robv.android.xposed.IXposedHookZygoteInit
 import de.robv.android.xposed.callbacks.XC_LoadPackage
@@ -41,11 +43,28 @@ class Entry : IXposedHookZygoteInit, IXposedHookLoadPackage {
                 )
                 EzXHelperInit.initSubActivity()
                 Log.i("Init context successfully")
+                helloWorld()
                 registerHooks()
             }
         } catch (e: Throwable) {
             Log.e("Failed to get context and classloader")
         }
+    }
+
+    private fun helloWorld() {
+        val pref = appContext.getSharedPreferences("fuck_dmzj", Context.MODE_PRIVATE)
+        getMethodBySig("Lcom/dmzjsq/manhua/ui/LaunchInterceptorActivity;->onResume()V")
+            .hookBefore { param ->
+                if (!pref.getBoolean("FirstUse", true)) return@hookBefore
+                (param.thisObject as Activity).startActivity(
+                    Intent(
+                        appContext,
+                        ModuleActivity::class.java
+                    )
+                )
+                pref.edit().putBoolean("FirstUse", false).apply()
+                Log.toast("模块初始化完成")
+            }
     }
 
     private fun registerHooks() {
