@@ -1,0 +1,43 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="功能">
+        <SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="FuckAds"
+            android:title="去广告" />
+        <MultiSelectListPreference
+            android:entries="@array/fuck_dialogs"
+            android:entryValues="@array/fuck_dialogs"
+            android:key="FuckDialogs"
+            android:title="屏蔽各种弹窗" />
+        <SwitchPreferenceCompat
+            android:selectable="false"
+            android:summary="大饼"
+
+            android:defaultValue="false"
+            android:key="AutoSign"
+            android:title="自动签到" />
+        <SwitchPreferenceCompat
+            android:selectable="false"
+            android:summary="大饼"
+
+            android:defaultValue="false"
+            android:key="ChangeDefaultPage"
+            android:title="更换首页 Tab 为漫画" />
+        <SwitchPreferenceCompat
+            android:selectable="false"
+            android:summary="大饼"
+
+            android:defaultValue="false"
+            android:key="ShowHiddenMangas"
+            android:title="显示隐藏漫画" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="关于模块">
+        <Preference
+            android:key="ModuleVersion"
+            android:title="模块版本" />
+        <Preference
+            android:key="CheckUpdate"
+            android:title="检查更新" />
+    </PreferenceCategory>
+</PreferenceScreen>

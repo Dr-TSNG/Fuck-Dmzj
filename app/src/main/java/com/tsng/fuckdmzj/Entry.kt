@@ -30,14 +30,18 @@ class Entry : IXposedHookZygoteInit, IXposedHookLoadPackage {
         try {
             findMethodByCondition(Application::class.java) {
                 it.name == "attach" && it.parameterTypes[0] == Context::class.java
-            }.also {
-                it.hookAfter { param ->
-                    val context = param.args[0] as Context
-                    EzXHelperInit.initAppContext(context)
-                    EzXHelperInit.setEzClassLoader(context.classLoader)
-                    Log.i("Init context successfully")
-                    registerHooks()
-                }
+            }.hookAfter { param ->
+                val context = param.args[0] as Context
+                EzXHelperInit.initAppContext(context)
+                EzXHelperInit.setEzClassLoader(context.classLoader)
+                EzXHelperInit.initActivityProxyManager(
+                    BuildConfig.APPLICATION_ID,
+                    "com.dmzjsq.manhua.ui.SettingHomeActivity",
+                    Entry::class.java.classLoader!!
+                )
+                EzXHelperInit.initSubActivity()
+                Log.i("Init context successfully")
+                registerHooks()
             }
         } catch (e: Throwable) {
             Log.e("Failed to get context and classloader")
@@ -53,8 +57,10 @@ class Entry : IXposedHookZygoteInit, IXposedHookLoadPackage {
         )
         allHooks.forEach { h ->
             try {
-                h.entry()
-                Log.i("Inited hook: ${h.javaClass.simpleName}")
+                if (h.join())
+                    Log.i("Inited hook: ${h.javaClass.simpleName}")
+                else
+                    Log.i("Skip register hook: ${h.javaClass.simpleName}")
             } catch (thr: Throwable) {
                 Log.t(thr, "Init hook failed: ${h.javaClass.simpleName}")
             }
