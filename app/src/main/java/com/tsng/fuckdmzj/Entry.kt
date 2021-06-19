@@ -7,6 +7,7 @@ import com.github.kyuubiran.ezxhelper.utils.Log
 import com.github.kyuubiran.ezxhelper.utils.findMethodByCondition
 import com.github.kyuubiran.ezxhelper.utils.hookAfter
 import com.tsng.fuckdmzj.fucks.AD
+import com.tsng.fuckdmzj.fucks.Entry
 import com.tsng.fuckdmzj.fucks.TeenagerMode
 import com.tsng.fuckdmzj.fucks.Update
 import de.robv.android.xposed.IXposedHookLoadPackage
@@ -45,10 +46,18 @@ class Entry : IXposedHookZygoteInit, IXposedHookLoadPackage {
 
     private fun registerHooks() {
         val allHooks = setOf(
+            Entry,
             AD,
             TeenagerMode,
-            Update
+            Update,
         )
-        for (hook in allHooks) hook.entry()
+        allHooks.forEach { h ->
+            try {
+                h.entry()
+                Log.i("Inited hook: ${h.javaClass.simpleName}")
+            } catch (thr: Throwable) {
+                Log.t(thr, "Init hook failed: ${h.javaClass.simpleName}")
+            }
+        }
     }
 }
