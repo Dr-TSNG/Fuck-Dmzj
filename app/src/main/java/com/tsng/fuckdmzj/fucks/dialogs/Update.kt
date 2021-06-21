@@ -14,6 +14,7 @@ object Update : BaseFuck() {
         getMethodBySig("Lcom/dmzjsq/manhua/helper/AppUpDataHelper;->checkVersionInfo(Landroid/app/Activity;Ljava/lang/Class;Z)V")
             .hookReplace {
                 Log.i("Fuck update")
+                return@hookReplace null
             }
     }
 }

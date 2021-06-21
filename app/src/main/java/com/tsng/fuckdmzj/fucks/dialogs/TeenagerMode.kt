@@ -16,6 +16,7 @@ object TeenagerMode : BaseFuck() {
             .hookReplace { param ->
                 Log.i("Fuck teenager mode")
                 param.thisObject.invokeMethod("finish")
+                return@hookReplace null
             }
     }
 }

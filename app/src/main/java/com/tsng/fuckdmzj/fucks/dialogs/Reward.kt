@@ -14,6 +14,7 @@ object Reward : BaseFuck() {
         getMethodBySig("Lcom/dmzjsq/manhua/ui/abc/viewpager2/BrowseActivityAncestors4;->lookAwardVideo()V")
             .hookReplace {
                 Log.i("Fuck reward dialog")
+                return@hookReplace null
             }
     }
 }

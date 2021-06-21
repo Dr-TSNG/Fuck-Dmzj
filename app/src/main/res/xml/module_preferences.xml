@@ -27,13 +27,6 @@
             android:summary="大饼"
 
             android:defaultValue="false"
-            android:key="ChangeDefaultPage"
-            android:title="更换首页 Tab 为漫画" />
-        <SwitchPreferenceCompat
-            android:selectable="false"
-            android:summary="大饼"
-
-            android:defaultValue="false"
             android:key="ShowHiddenMangas"
             android:title="显示隐藏漫画" />
     </PreferenceCategory>
