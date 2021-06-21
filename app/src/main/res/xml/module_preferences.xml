@@ -43,7 +43,12 @@
             android:key="ModuleVersion"
             android:title="模块版本" />
         <Preference
-            android:key="CheckUpdate"
-            android:title="检查更新" />
+            android:key="Author"
+            android:summary="𝖓𝖚𝖑𝖑𝖕𝖙𝖗"
+            android:title="作者" />
+        <Preference
+            android:key="GitHub"
+            android:summary="https://github.com/Dr-TSNG/Fuck-Dmzj"
+            android:title="项目地址" />
     </PreferenceCategory>
 </PreferenceScreen>

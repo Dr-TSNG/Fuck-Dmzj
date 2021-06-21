@@ -1,9 +1,12 @@
 package com.tsng.fuckdmzj.ui
 
+import android.content.DialogInterface
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
-import com.github.kyuubiran.ezxhelper.utils.Log
 import com.tsng.fuckdmzj.GlobalVals
 import com.tsng.fuckdmzj.R
 import com.tsng.fuckdmzj.ui.base.AppCompatTransferActivity
@@ -33,8 +36,29 @@ class ModuleActivity : AppCompatTransferActivity() {
                 exitProcess(0)
             }
             findPreference<Preference>("ModuleVersion")?.summary = GlobalVals.TITLE_V
-            findPreference<Preference>("CheckUpdate")?.setOnPreferenceClickListener {
-                Log.toast("还没写")
+            findPreference<Preference>("Author")?.setOnPreferenceClickListener {
+                AlertDialog.Builder(requireActivity())
+                    .setTitle("我的其他作品")
+                    .setItems(arrayOf("隐藏应用列表")) { _: DialogInterface, i: Int ->
+                        when (i) {
+                            0 -> startActivity(
+                                Intent(
+                                    Intent.ACTION_VIEW,
+                                    Uri.parse("https://github.com/Dr-TSNG/Hide-My-Applist")
+                                )
+                            )
+                        }
+                    }
+                    .show()
+                true
+            }
+            findPreference<Preference>("GitHub")?.setOnPreferenceClickListener {
+                startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("https://github.com/Dr-TSNG/Fuck-Dmzj")
+                    )
+                )
                 true
             }
         }
