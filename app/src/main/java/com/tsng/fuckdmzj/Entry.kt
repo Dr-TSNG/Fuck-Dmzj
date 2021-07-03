@@ -8,6 +8,7 @@ import com.github.kyuubiran.ezxhelper.init.EzXHelperInit
 import com.github.kyuubiran.ezxhelper.init.InitFields.appContext
 import com.github.kyuubiran.ezxhelper.utils.*
 import com.tsng.fuckdmzj.fucks.AD
+import com.tsng.fuckdmzj.fucks.AutoSign
 import com.tsng.fuckdmzj.fucks.ModuleEntry
 import com.tsng.fuckdmzj.fucks.dialogs.Reward
 import com.tsng.fuckdmzj.fucks.dialogs.TeenagerMode
@@ -76,6 +77,7 @@ class Entry : IXposedHookZygoteInit, IXposedHookLoadPackage {
         val allHooks = setOf(
             ModuleEntry,
             AD,
+            AutoSign,
             Reward,
             TeenagerMode,
             Update,

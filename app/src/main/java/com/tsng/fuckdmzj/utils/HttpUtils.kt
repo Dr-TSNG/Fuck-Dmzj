@@ -1,11 +1,11 @@
-package com.tsng.fuckdmzj.util
+package com.tsng.fuckdmzj.utils
 
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
 import java.util.concurrent.TimeUnit
 
-object HttpUtil {
+object HttpUtils {
     private val okHttpClient = OkHttpClient.Builder().run {
         callTimeout(60, TimeUnit.SECONDS)
         connectTimeout(60, TimeUnit.SECONDS)
@@ -14,9 +14,7 @@ object HttpUtil {
         build()
     }
 
-    /**
-     * 处理新请求
-     */
+    //处理新请求
     fun execNewCall(req: Request): Response {
         return okHttpClient.newCall(req).execute()
     }

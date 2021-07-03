@@ -16,9 +16,6 @@
             android:key="FuckDialogs"
             android:title="屏蔽各种弹窗" />
         <SwitchPreferenceCompat
-            android:selectable="false"
-            android:summary="大饼"
-
             android:defaultValue="false"
             android:key="AutoSign"
             android:title="自动签到" />
