@@ -15,7 +15,7 @@ abstract class BaseFuck {
         when (prefType) {
             null -> register = true
             "Switch" -> register = pref.getBoolean(prefName, false)
-            "Array" -> register = pref.getStringSet(prefName, setOf()).contains(valueName)
+            "Array" -> register = pref.getStringSet(prefName, setOf())?.contains(valueName) ?: false
         }
         if (register) entry()
         return register

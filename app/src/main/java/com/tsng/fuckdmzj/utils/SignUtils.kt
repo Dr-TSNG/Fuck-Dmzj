@@ -22,7 +22,7 @@ object SignUtils {
 
     private val sign: String
         get() = loadClass("com.dmzjsq.manhua.utils.MD5")
-            .invokeStaticMethodAuto("MD5Encode", token + uid + "d&m\$z*j_159753twt") as String
+            .invokeStaticMethodAutoAs<String>("MD5Encode", token + uid + "d&m\$z*j_159753twt")!!
 
     fun loadUserModel(activity: Activity): Boolean {
         userModel = loadClass("com.dmzjsq.manhua.dbabst.db.UserModelTable")

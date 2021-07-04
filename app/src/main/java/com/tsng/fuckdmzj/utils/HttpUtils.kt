@@ -1,8 +1,7 @@
 package com.tsng.fuckdmzj.utils
 
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.Response
+import okhttp3.*
+import java.io.IOException
 import java.util.concurrent.TimeUnit
 
 object HttpUtils {
@@ -17,5 +16,9 @@ object HttpUtils {
     //处理新请求
     fun execNewCall(req: Request): Response {
         return okHttpClient.newCall(req).execute()
+    }
+
+    fun execNewCall(req: Request, callback: Callback) {
+        okHttpClient.newCall(req).enqueue(callback)
     }
 }
